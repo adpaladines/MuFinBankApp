@@ -1,0 +1,11 @@
+{
+    "name": "MuFinBank",
+    "version": "1.0.0",
+    "description": "This is the API for banking services.",
+    "title": "MuFinBank API Services",
+    "url": "http://localhost:5000",
+    "template": {
+      "withGenerator": false
+    }
+  }
+  

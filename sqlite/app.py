@@ -13,6 +13,33 @@ def get_db_connection():
 # GET Services
 @app.route('/customers', methods=['GET'])
 def get_customers():
+    """
+    @api {get} /customers Get All Customers
+    @apiName GetCustomers
+    @apiGroup Customers
+    @apiVersion 1.0.0
+
+    @apiSuccess {Object[]} customers List of customers.
+    @apiSuccess {Number} customers.id Customer's unique ID.
+    @apiSuccess {String} customers.name Customer's name.
+    @apiSuccess {Number} customers.balance Customer's balance.
+
+    @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        [
+            {
+                "id": 1,
+                "name": "John Doe",
+                "balance": 1500
+            },
+            {
+                "id": 2,
+                "name": "Jane Smith",
+                "balance": 2000
+            }
+        ]
+    """
+
     conn = get_db_connection()
     cursor = conn.execute('SELECT * FROM customers')
     customers = cursor.fetchall()
