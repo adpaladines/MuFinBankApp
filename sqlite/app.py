@@ -3,6 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
+# TO RUN THE ApiDoc Generator, execute in terminal 'npm run apidoc'
 # Database connection
 def get_db_connection():
     conn = sqlite3.connect('data/banking.db')
