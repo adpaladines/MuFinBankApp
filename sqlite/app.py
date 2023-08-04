@@ -76,6 +76,7 @@ def get_transaction(id):
     return jsonify({'message': 'Transaction not found'}), 404
 
 # POST Services
+# USER CREATION
 @app.route('/customers', methods=['POST'])
 def create_customer():
     if not request.json or 'name' not in request.json or 'balance' not in request.json:
@@ -92,7 +93,76 @@ def create_customer():
 
     return jsonify({'message': 'Customer created successfully'}), 201
 
+# DEPOSIT
+@app.route('/deposit', methods=['POST'])
+def deposit():
+    if not request.json or 'customer_id' not in request.json or 'amount' not in request.json:
+        return jsonify({'message': 'Invalid data'}), 400
 
+    customer_id = request.json['customer_id']
+    amount = request.json['amount']
+
+    # Check if the customer exists
+    conn = get_db_connection()
+    cursor = conn.execute('SELECT * FROM customers WHERE id = ?', (customer_id,))
+    customer = cursor.fetchone()
+    if not customer:
+        conn.close()
+        return jsonify({'message': 'Customer not found'}), 404
+
+    # Record the deposit transaction
+    conn.execute('INSERT INTO deposits (customer_id, amount) VALUES (?, ?)', (customer_id, amount))
+
+    # Update the customer's balance
+    new_balance = customer['balance'] + amount
+    conn.execute('UPDATE customers SET balance = ? WHERE id = ?', (new_balance, customer_id))
+
+    # Record the transaction in the transactions table
+    conn.execute('INSERT INTO transactions (customer_id, transaction_type, amount) VALUES (?, ?, ?)',
+                 (customer_id, 'deposit', amount))
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({'message': 'Deposit successful'}), 201
+
+# WITHDRAWAL
+@app.route('/withdrawal', methods=['POST'])
+def withdrawal():
+    if not request.json or 'customer_id' not in request.json or 'amount' not in request.json:
+        return jsonify({'message': 'Invalid data'}), 400
+
+    customer_id = request.json['customer_id']
+    amount = request.json['amount']
+
+    # Check if the customer exists
+    conn = get_db_connection()
+    cursor = conn.execute('SELECT * FROM customers WHERE id = ?', (customer_id,))
+    customer = cursor.fetchone()
+    if not customer:
+        conn.close()
+        return jsonify({'message': 'Customer not found'}), 404
+
+    # Check if the customer has sufficient balance
+    if customer['balance'] < amount:
+        conn.close()
+        return jsonify({'message': 'Insufficient balance'}), 400
+
+    # Record the withdrawal transaction
+    conn.execute('INSERT INTO withdrawals (customer_id, amount) VALUES (?, ?)', (customer_id, amount))
+
+    # Update the customer's balance
+    new_balance = customer['balance'] - amount
+    conn.execute('UPDATE customers SET balance = ? WHERE id = ?', (new_balance, customer_id))
+
+    # Record the transaction in the transactions table
+    conn.execute('INSERT INTO transactions (customer_id, transaction_type, amount) VALUES (?, ?, ?)',
+                 (customer_id, 'withdrawal', amount))
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({'message': 'Withdrawal successful'}), 201
 
 # PUT Services
 @app.route('/customer/<int:id>', methods=['PUT'])
