@@ -116,6 +116,83 @@ def get_transaction(id):
     return jsonify({'message': 'Transaction not found'}), 404
 
 
+@app.route('/atm-locations', methods=['GET'])
+def get_atm_locations():
+    """
+    @api {get} /atm-locations Get ATM Locations
+    @apiName GetATMLocations
+    @apiGroup ATM Locations
+    @apiVersion 1.0.0
+
+    @apiSuccess {Object[]} atm_locations List of ATM locations.
+    @apiSuccess {Number} atm_locations.id ATM's unique ID.
+    @apiSuccess {Number} atm_locations.latitude Latitude of the ATM location.
+    @apiSuccess {Number} atm_locations.longitude Longitude of the ATM location.
+    @apiSuccess {String} atm_locations.bank_name Name of the bank associated with the ATM.
+    @apiSuccess {String} atm_locations.address Address of the ATM location.
+
+    @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        [
+            {
+                "id": 1,
+                "latitude": 33.7490,
+                "longitude": -84.3880,
+                "bank_name": "Peachtree Plaza",
+                "address": "123 Peachtree St NE, Atlanta, GA"
+            },
+            {
+                "id": 2,
+                "latitude": 33.7749,
+                "longitude": -84.2963,
+                "bank_name": "Centennial Park",
+                "address": "456 Marietta St NW, Atlanta, GA"
+            },
+            {
+                "id": 3,
+                "latitude": 33.7537,
+                "longitude": -84.3880,
+                "bank_name": "Georgia Aquarium",
+                "address": "789 Luckie St NW, Atlanta, GA"
+            },
+            ...
+        ]
+
+    @apiErrorExample {json} Error-Response:
+        HTTP/1.1 400 Bad Request
+        {
+            "message": "Latitude and longitude coordinates are required"
+        }
+
+        HTTP/1.1 404 Not Found
+        {
+            "message": "No ATM locations found for the provided coordinates"
+        }
+    """
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Fetch ATM locations based on the provided latitude and longitude coordinates
+    cursor.execute('SELECT * FROM atm_locations ')
+    atm_locations = cursor.fetchall()
+    conn.close()
+
+    if not atm_locations:
+        return jsonify({'message': 'No ATM locations found for the provided coordinates'}), 404
+
+    # Format the response as a list of dictionaries
+    result = []
+    for location in atm_locations:
+        result.append({
+            'id': location['id'],
+            'latitude': location['latitude'],
+            'longitude': location['longitude'],
+            'bank_name': location['bank_name'],
+            'address': location['address']
+        })
+
+    return jsonify(result), 200
 
 @app.route('/customers', methods=['POST'])
 def create_customer():

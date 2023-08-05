@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "a7ae0a9e-bbcb-48b6-9409-407e12097fae",
+		"name": "BankApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4498814"
+	},
+	"item": [
+		{
+			"name": "UserInfo",
+			"item": [
+				{
+					"name": "All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/customers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/customer/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Andres Paladines Garcia\",\n    \"balance\": 10043,\n    \"user\": \"apaladinesg\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/customers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "All Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/transactions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/transaction/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"transaction",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": 1,\n    \"amount\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/deposit",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdrawal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": 1,\n    \"amount\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/withdrawal",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"withdrawal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATM",
+			"item": [
+				{
+					"name": "ATM-locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/atm-locations",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"atm-locations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/atm-locations",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"atm-locations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.3.6 Python/3.11.4"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 05 Aug 2023 14:08:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "6480"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"address\": \"123 Peachtree St NE, Atlanta, GA\",\n        \"bank_name\": \"Peachtree Plaza\",\n        \"id\": 1,\n        \"latitude\": 33.749,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"456 Marietta St NW, Atlanta, GA\",\n        \"bank_name\": \"Centennial Park\",\n        \"id\": 2,\n        \"latitude\": 33.7749,\n        \"longitude\": -84.2963\n    },\n    {\n        \"address\": \"789 Luckie St NW, Atlanta, GA\",\n        \"bank_name\": \"Georgia Aquarium\",\n        \"id\": 3,\n        \"latitude\": 33.7537,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"101 Marietta St NW, Atlanta, GA\",\n        \"bank_name\": \"CNN Center\",\n        \"id\": 4,\n        \"latitude\": 33.7574,\n        \"longitude\": -84.3963\n    },\n    {\n        \"address\": \"888 W Peachtree St NW, Atlanta, GA\",\n        \"bank_name\": \"World of Coca-Cola\",\n        \"id\": 5,\n        \"latitude\": 33.755,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"222 Martin Luther King Jr Dr NW, Atlanta, GA\",\n        \"bank_name\": \"Mercedes-Benz Stadium\",\n        \"id\": 6,\n        \"latitude\": 33.7645,\n        \"longitude\": -84.4013\n    },\n    {\n        \"address\": \"333 Luckie St NW, Atlanta, GA\",\n        \"bank_name\": \"The Tabernacle\",\n        \"id\": 7,\n        \"latitude\": 33.7513,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"444 Parker St NW, Atlanta, GA\",\n        \"bank_name\": \"State Farm Arena\",\n        \"id\": 8,\n        \"latitude\": 33.7683,\n        \"longitude\": -84.3933\n    },\n    {\n        \"address\": \"555 Courtland St NE, Atlanta, GA\",\n        \"bank_name\": \"Georgia State University\",\n        \"id\": 9,\n        \"latitude\": 33.7704,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"666 Upper Alabama St SW, Atlanta, GA\",\n        \"bank_name\": \"Underground Atlanta\",\n        \"id\": 10,\n        \"latitude\": 33.7491,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"777 Peachtree St NE, Atlanta, GA\",\n        \"bank_name\": \"Woodruff Park\",\n        \"id\": 11,\n        \"latitude\": 33.7515,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"888 Spring St NW, Atlanta, GA\",\n        \"bank_name\": \"The Varsity\",\n        \"id\": 12,\n        \"latitude\": 33.7727,\n        \"longitude\": -84.3845\n    },\n    {\n        \"address\": \"999 Peachtree St NE, Atlanta, GA\",\n        \"bank_name\": \"AmericasMart\",\n        \"id\": 13,\n        \"latitude\": 33.7531,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"111 Baker St NW, Atlanta, GA\",\n        \"bank_name\": \"Centennial Olympic Park\",\n        \"id\": 14,\n        \"latitude\": 33.7625,\n        \"longitude\": -84.3943\n    },\n    {\n        \"address\": \"222 Luckie St NW, Atlanta, GA\",\n        \"bank_name\": \"Tabernacle\",\n        \"id\": 15,\n        \"latitude\": 33.7581,\n        \"longitude\": -84.3892\n    },\n    {\n        \"address\": \"333 Auburn Ave NE, Atlanta, GA\",\n        \"bank_name\": \"Rialto Center for the Arts\",\n        \"id\": 16,\n        \"latitude\": 33.773,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"444 Marietta St NW, Atlanta, GA\",\n        \"bank_name\": \"College Football Hall of Fame\",\n        \"id\": 17,\n        \"latitude\": 33.7525,\n        \"longitude\": -84.3963\n    },\n    {\n        \"address\": \"555 Courtland St NE, Atlanta, GA\",\n        \"bank_name\": \"Hard Rock Cafe\",\n        \"id\": 18,\n        \"latitude\": 33.7724,\n        \"longitude\": -84.3862\n    },\n    {\n        \"address\": \"666 West Peachtree St NW, Atlanta, GA\",\n        \"bank_name\": \"SkyView Atlanta\",\n        \"id\": 19,\n        \"latitude\": 33.77,\n        \"longitude\": -84.3963\n    },\n    {\n        \"address\": \"777 Courtland St NE, Atlanta, GA\",\n        \"bank_name\": \"Hilton Atlanta\",\n        \"id\": 20,\n        \"latitude\": 33.7492,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"123 Peachtree St NE, Atlanta, GA\",\n        \"bank_name\": \"Peachtree Plaza\",\n        \"id\": 21,\n        \"latitude\": 33.749,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"456 Marietta St NW, Atlanta, GA\",\n        \"bank_name\": \"Centennial Park\",\n        \"id\": 22,\n        \"latitude\": 33.7749,\n        \"longitude\": -84.2963\n    },\n    {\n        \"address\": \"789 Luckie St NW, Atlanta, GA\",\n        \"bank_name\": \"Georgia Aquarium\",\n        \"id\": 23,\n        \"latitude\": 33.7537,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"101 Marietta St NW, Atlanta, GA\",\n        \"bank_name\": \"CNN Center\",\n        \"id\": 24,\n        \"latitude\": 33.7574,\n        \"longitude\": -84.3963\n    },\n    {\n        \"address\": \"888 W Peachtree St NW, Atlanta, GA\",\n        \"bank_name\": \"World of Coca-Cola\",\n        \"id\": 25,\n        \"latitude\": 33.755,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"222 Martin Luther King Jr Dr NW, Atlanta, GA\",\n        \"bank_name\": \"Mercedes-Benz Stadium\",\n        \"id\": 26,\n        \"latitude\": 33.7645,\n        \"longitude\": -84.4013\n    },\n    {\n        \"address\": \"333 Luckie St NW, Atlanta, GA\",\n        \"bank_name\": \"The Tabernacle\",\n        \"id\": 27,\n        \"latitude\": 33.7513,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"444 Parker St NW, Atlanta, GA\",\n        \"bank_name\": \"State Farm Arena\",\n        \"id\": 28,\n        \"latitude\": 33.7683,\n        \"longitude\": -84.3933\n    },\n    {\n        \"address\": \"555 Courtland St NE, Atlanta, GA\",\n        \"bank_name\": \"Georgia State University\",\n        \"id\": 29,\n        \"latitude\": 33.7704,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"666 Upper Alabama St SW, Atlanta, GA\",\n        \"bank_name\": \"Underground Atlanta\",\n        \"id\": 30,\n        \"latitude\": 33.7491,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"777 Peachtree St NE, Atlanta, GA\",\n        \"bank_name\": \"Woodruff Park\",\n        \"id\": 31,\n        \"latitude\": 33.7515,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"888 Spring St NW, Atlanta, GA\",\n        \"bank_name\": \"The Varsity\",\n        \"id\": 32,\n        \"latitude\": 33.7727,\n        \"longitude\": -84.3845\n    },\n    {\n        \"address\": \"999 Peachtree St NE, Atlanta, GA\",\n        \"bank_name\": \"AmericasMart\",\n        \"id\": 33,\n        \"latitude\": 33.7531,\n        \"longitude\": -84.388\n    },\n    {\n        \"address\": \"111 Baker St NW, Atlanta, GA\",\n        \"bank_name\": \"Centennial Olympic Park\",\n        \"id\": 34,\n        \"latitude\": 33.7625,\n        \"longitude\": -84.3943\n    },\n    {\n        \"address\": \"222 Luckie St NW, Atlanta, GA\",\n        \"bank_name\": \"Tabernacle\",\n        \"id\": 35,\n        \"latitude\": 33.7581,\n        \"longitude\": -84.3892\n    },\n    {\n        \"address\": \"333 Auburn Ave NE, Atlanta, GA\",\n        \"bank_name\": \"Rialto Center for the Arts\",\n        \"id\": 36,\n        \"latitude\": 33.773,\n        \"longitude\": -84.3911\n    },\n    {\n        \"address\": \"444 Marietta St NW, Atlanta, GA\",\n        \"bank_name\": \"College Football Hall of Fame\",\n        \"id\": 37,\n        \"latitude\": 33.7525,\n        \"longitude\": -84.3963\n    },\n    {\n        \"address\": \"555 Courtland St NE, Atlanta, GA\",\n        \"bank_name\": \"Hard Rock Cafe\",\n        \"id\": 38,\n        \"latitude\": 33.7724,\n        \"longitude\": -84.3862\n    },\n    {\n        \"address\": \"666 West Peachtree St NW, Atlanta, GA\",\n        \"bank_name\": \"SkyView Atlanta\",\n        \"id\": 39,\n        \"latitude\": 33.77,\n        \"longitude\": -84.3963\n    },\n    {\n        \"address\": \"777 Courtland St NE, Atlanta, GA\",\n        \"bank_name\": \"Hilton Atlanta\",\n        \"id\": 40,\n        \"latitude\": 33.7492,\n        \"longitude\": -84.388\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}

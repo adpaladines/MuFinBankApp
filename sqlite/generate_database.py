@@ -10,6 +10,16 @@ def create_tables():
     conn = sqlite3.connect('banking.db')
     cursor = conn.cursor()
 
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS atm_locations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            latitude REAL NOT NULL,
+            longitude REAL NOT NULL,
+            bank_name TEXT NOT NULL,
+            address TEXT NOT NULL
+        )
+    ''')
+
     # Create customers table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS customers (
