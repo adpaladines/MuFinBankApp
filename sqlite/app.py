@@ -131,7 +131,7 @@ def deposit():
 def withdrawal():
     if not request.json or 'customer_id' not in request.json or 'amount' not in request.json:
         return jsonify({'message': 'Invalid data'}), 400
-
+    
     customer_id = request.json['customer_id']
     amount = request.json['amount']
 
