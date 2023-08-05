@@ -11,7 +11,7 @@
 
     - `source venv/bin/activate`
     - `python generate_database.py`
-    - `./run_app.sh`
+    - `python app.py`
 
 #### Closing server:
 - `CTRL+C` to extix server
