@@ -90,7 +90,7 @@ def get_transaction(id):
     """
     @api {get} /transaction/:transaction_id Get Transaction by ID
     @apiName GetTransaction
-    @@apiGroup Transactions
+    @apiGroup Transactions
     @apiVersion 1.0.0
 
     @apiParam {Number} transaction_id Transaction's unique ID.
@@ -173,7 +173,7 @@ def deposit():
     """
     @api {post} /deposit Make a Deposit
     @apiName Deposit
-    @@apiGroup Transactions
+    @apiGroup Transactions
     @apiVersion 1.0.0
 
     @apiParam {Number} customer_id Customer's unique ID.
@@ -223,7 +223,7 @@ def withdrawal():
     """
     @api {post} /withdrawal Make a Withdrawal
     @apiName Withdrawal
-    @@apiGroup Transactions
+    @apiGroup Transactions
     @apiVersion 1.0.0
 
     @apiParam {Number} customer_id Customer's unique ID.
