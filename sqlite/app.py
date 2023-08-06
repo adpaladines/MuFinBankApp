@@ -116,6 +116,76 @@ def get_transaction(id):
     return jsonify({'message': 'Transaction not found'}), 404
 
 
+@app.route('/transactions/<int:customer_id>', methods=['GET'])
+def get_transactions_by_customer(customer_id):
+    """
+    @api {get} /transactions/:customer_id Get Transactions by Customer ID
+    @apiName GetTransactionsByCustomer
+    @apiGroup Transactions
+
+    @apiParam {Number} customer_id Customer's unique ID.
+
+    @apiSuccess {Object[]} transactions List of transactions for the customer.
+    @apiSuccess {Number} transactions.id Transaction's unique ID.
+    @apiSuccess {Number} transactions.customer_id Customer's unique ID.
+    @apiSuccess {String} transactions.transaction_type Type of transaction (e.g., 'deposit' or 'withdrawal').
+    @apiSuccess {Number} transactions.amount Transaction amount.
+    @apiSuccess {String} transactions.date Date and time of the transaction.
+
+    @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        [
+            {
+                "id": 1,
+                "customer_id": 123,
+                "transaction_type": "deposit",
+                "amount": 100.0,
+                "date": "2023-08-03 12:34:56"
+            },
+            {
+                "id": 2,
+                "customer_id": 123,
+                "transaction_type": "withdrawal",
+                "amount": 50.0,
+                "date": "2023-08-04 10:20:30"
+            },
+            ...
+        ]
+
+    @apiErrorExample {json} Error-Response:
+        HTTP/1.1 404 Not Found
+        {
+            "message": "Customer not found"
+        }
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Check if the customer exists
+    cursor.execute('SELECT * FROM customers WHERE id = ?', (customer_id,))
+    customer = cursor.fetchone()
+    if not customer:
+        conn.close()
+        return jsonify({'message': 'Customer not found'}), 404
+
+    # Fetch transactions for the customer based on customer_id
+    cursor.execute('SELECT * FROM transactions WHERE customer_id = ?', (customer_id,))
+    transactions = cursor.fetchall()
+    conn.close()
+
+    # Format the response as a list of dictionaries
+    result = []
+    for transaction in transactions:
+        result.append({
+            'id': transaction['id'],
+            'customer_id': transaction['customer_id'],
+            'transaction_type': transaction['transaction_type'],
+            'amount': transaction['amount'],
+            'date': transaction['date']
+        })
+
+    return jsonify(result), 200
+
 @app.route('/atm-locations', methods=['GET'])
 def get_atm_locations():
     """
