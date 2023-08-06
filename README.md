@@ -19,12 +19,13 @@
             id INTEGER PRIMARY KEY,
             name TEXT NOT NULL
         );
+
         
 
 #### How to run server:
 * Verify that every file has permissions for reading and writing.
 * Open terminal 
-* Go to sqlite directory
+* Go to `sqlite` directory
 * Execute the following commands:
 
     - `chmod +w generate_database.py`
