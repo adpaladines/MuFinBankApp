@@ -29,10 +29,9 @@
 * Execute the following commands:
 
     - `chmod +w generate_database.py`
-    - `chmod +w run_app.sh`
 
     - `source venv/bin/activate`
-    - `python generate_database.py`
+    - `python generate_database.py` (in case python is not found, use python3)
     - `python app.py`
 
 #### Closing server:
