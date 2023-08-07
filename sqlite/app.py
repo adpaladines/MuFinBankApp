@@ -356,8 +356,8 @@ def deposit():
     conn.execute('UPDATE customers SET balance = ? WHERE id = ?', (new_balance, customer_id))
 
     # Record the transaction in the transactions table
-    conn.execute('INSERT INTO transactions (customer_id, transaction_type, amount) VALUES (?, ?, ?)',
-                 (customer_id, 'deposit', amount))
+    conn.execute('INSERT INTO transactions (customer_id, transaction_type, amount, new_balance) VALUES (?, ?, ?, ?)',
+                 (customer_id, 'deposit', amount, new_balance))
 
     conn.commit()
     conn.close()

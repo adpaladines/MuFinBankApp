@@ -60,6 +60,7 @@ def create_tables():
             customer_id INTEGER NOT NULL,
             transaction_type TEXT NOT NULL,
             amount REAL NOT NULL,
+            new_balance REAL NOT NULL,
             date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (customer_id) REFERENCES customers (id)
         )
