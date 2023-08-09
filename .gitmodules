@@ -1,0 +1,3 @@
+[submodule "MuFinBankApp_ios"]
+	path = MuFinBankApp_ios
+	url = https://github.com/apaladines-techconsulting/MuFinBankApp_ios.git
